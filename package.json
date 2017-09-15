@@ -2,7 +2,7 @@
   "name": "template",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "build": "node ./node_modules/grunt/bin/grunt build",
     "test": "node ./node_modules/grunt/bin/grunt test"
