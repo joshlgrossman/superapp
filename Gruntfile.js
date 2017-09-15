@@ -26,8 +26,8 @@ module.exports = grunt => {
     browserify: {
       build: {
         files: {
-          'dist/app.js': 'src/app.js',
-          'test/test.min.js': 'test/test.js'
+          'dist/index.js': 'src/index.js',
+          'demo/test.min.js': 'demo/test.js'
         },
         options: {
           transform: [[
@@ -46,7 +46,7 @@ module.exports = grunt => {
     uglify: {
       build: {
         files: {
-          'dist/app.js': 'dist/app.js'
+          'dist/index.js': 'dist/index.js'
         }
       }
     }
