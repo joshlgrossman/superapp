@@ -1,4 +1,4 @@
-import { object, func, string } from './util';
+import { func, string } from './util';
 
 function createElement(value) {
   return string(value) ? document.createTextNode(value) : document.createElement(value.tag);

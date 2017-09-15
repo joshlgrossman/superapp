@@ -5,6 +5,8 @@ export function app(element, { app, store, reducers = [] }) {
   
   let old = {};
   let willRender = false;
+  
+  // eslint-disable-next-line no-use-before-define
   const model = createStore(store, reducers, updater);
   const throttleFunction = window.requestAnimationFrame || function(func){
     window.setTimeout(func, 10);
