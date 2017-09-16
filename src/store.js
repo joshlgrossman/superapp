@@ -1,6 +1,7 @@
-export function createStore(initialValue, reducers, update) {
+export function createStore(initialState, reducers, update) {
   const obj = {};
-  obj.value = initialValue;
+  obj.update = update;
+  obj.value = initialState;
   obj.dispatch = (event, value) => {
     obj.value = reducers.reduce(
       (result, reducer) => reducer(result, event, value) || result,
