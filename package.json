@@ -1,6 +1,6 @@
 {
   "name": "superapp",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A minimal frontend framework",
   "main": "dist/index.js",
   "scripts": {
