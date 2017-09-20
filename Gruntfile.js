@@ -23,38 +23,24 @@ module.exports = grunt => {
       build: ['src/**/*.js']
     },
 
-    browserify: {
-      build: {
-        files: {
-          'dist/index.js': 'src/index.js',
-          'demo/test.min.js': 'demo/test.js'
-        },
-        options: {
-          transform: [[
-            'babelify', {
-              presets: ['es2015', 'es2016', 'es2017'],
-              plugins: ["transform-object-rest-spread"]
-            }
-          ]]
-        }
-      },
+    babel: {
       options: {
-        browserifyOptions: { debug }
-      }
-    },
-
-    uglify: {
-      build: {
-        files: {
-          'dist/index.js': 'dist/index.js'
-        }
+        presets: ['es2015', 'es2016', 'es2017']
+      },
+      dist: {
+        files: [{
+          expand: true,
+          cwd: 'src',
+          src: ['**/*.js'],
+          dest: 'dist',
+          ext: '.js'
+      }]
       }
     }
 
   });
 
-  grunt.loadNpmTasks('grunt-browserify');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-babel');
   grunt.loadNpmTasks('grunt-eslint');
   grunt.loadNpmTasks('grunt-mocha-test');
 
@@ -64,8 +50,7 @@ module.exports = grunt => {
   ]);
 
   grunt.registerTask('build', [
-    'browserify',
-    'uglify'
+    'babel'
   ]);
 
   grunt.registerTask('default', ['test', 'build']);
