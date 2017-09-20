@@ -5,7 +5,7 @@ export function app(element, { app, state: initialState, events: reducers = [] }
   
   let old = {};
   let willRender = false;
-  
+
   const throttleFunction = window.requestAnimationFrame || function(func){
     window.setTimeout(func, 30);
   };
@@ -16,7 +16,8 @@ export function app(element, { app, state: initialState, events: reducers = [] }
       throttleFunction(() => {
         const next = { children: [app({
           state: store.value, 
-          dispatch: store.dispatch
+          dispatch: store.dispatch,
+          http: store.http
         })] };
         update(element, old, next);
         old = next;
