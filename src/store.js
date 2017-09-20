@@ -1,3 +1,5 @@
+import * as http from './http';
+
 export function createStore(initialState, reducers, update) {
   const obj = {};
   obj.update = update;
@@ -9,5 +11,13 @@ export function createStore(initialState, reducers, update) {
     );
     update(obj);
   };
+
+  obj.http = {};
+  for(const key in http) {
+    obj.http[key] = (url, params) => {
+      http[key](url, params, (err, result) => obj.dispatch(`[${key}] ${url}`, {err, result}));
+    };
+  }
+
   return obj;
 }
