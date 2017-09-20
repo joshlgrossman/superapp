@@ -3,8 +3,15 @@ superapp
 
 superapp is basically a rip-off of hyperapp.
 
-example:
+Installation:
+---
+`npm i superapp`
+
+Usage:
+---
 ```javascript
+import { app, el } from 'superapp';
+
 const div = (attrs, ...children) => el('div', attrs, ...children);
 const button = (attrs, ...children) => el('button', attrs, ...children);
 const webservice = 'https://jsonplaceholder.typicode.com/posts/';
