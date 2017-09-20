@@ -34,7 +34,7 @@ module.exports = grunt => {
           src: ['**/*.js'],
           dest: 'dist',
           ext: '.js'
-      }]
+        }]
       }
     }
 
