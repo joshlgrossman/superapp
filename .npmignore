@@ -5,3 +5,4 @@ demo
 Gruntfile.js
 eslint.json
 test
+.babelrc
