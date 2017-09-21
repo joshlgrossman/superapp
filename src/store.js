@@ -14,7 +14,7 @@ export function createStore(initialState, reducers, update) {
 
   obj.http = {};
   for(const key in http) {
-    obj.http[key] = (url, event, params) => {
+    obj.http[key] = (event, url, params) => {
       http[key](url, params, (err, result) => obj.dispatch(event, {err, result}));
     };
   }

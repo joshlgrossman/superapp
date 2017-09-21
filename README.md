@@ -46,7 +46,7 @@ app(
         `${state.timesClicked}`,
         button({ click: e => dispatch('sub') }, 'click to subtract 1'),
 
-        button({ click: e => http.get(webservice + (state.posts.length + 1), 'load-post')}, 'click to load next post'),
+        button({ click: e => http.get('load-post', webservice + (state.posts.length + 1))}, 'click to load next post'),
         ...state.posts.map(post => div({}, post))
       )
 
