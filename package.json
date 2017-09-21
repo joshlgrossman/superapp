@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "node ./node_modules/grunt/bin/grunt build",
-    "test": "node ./node_modules/grunt/bin/grunt test"
+    "test": "node ./node_modules/grunt/bin/grunt test",
+    "prepublishOnly": "node ./node_modules/grunt/bin/grunt"
   },
   "keywords": [],
   "author": "",
