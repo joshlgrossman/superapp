@@ -11,6 +11,8 @@ function http(url, method, params, cb) {
     }
   };
   xhr.send(JSON.stringify(params));
+
+  return xhr;
 }
 
 export const post = (url, params, cb) => http(url, 'POST', params, cb);
@@ -24,5 +26,5 @@ export const get = (url, params, cb) => {
     paramArray.push(`${encodedKey}=${encodedVal}`);
   }
   url += `?${paramArray.join('&')}`;
-  http(url, 'GET', {}, cb);
+  return http(url, 'GET', {}, cb);
 };
