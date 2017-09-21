@@ -1,7 +1,7 @@
 import { createStore } from './store';
 import { update } from './update';
 
-export function app(element, { app, state: initialState, events: reducers = [] }) {
+export function app(element, { view, state: initialState, events: reducers = [] }) {
   
   let old = {};
   let willRender = false;
@@ -14,7 +14,7 @@ export function app(element, { app, state: initialState, events: reducers = [] }
     if(!willRender) {
       willRender = true;
       throttleFunction(() => {
-        const next = { children: [app({
+        const next = { children: [view({
           state: store.value, 
           dispatch: store.dispatch,
           http: store.http
