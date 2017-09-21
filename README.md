@@ -1,7 +1,7 @@
 superapp
 ---
 
-superapp is basically a rip-off of hyperapp.
+superapp is basically a rip-off of hyperapp with a dash of redux.
 
 Installation:
 ---
@@ -40,7 +40,7 @@ app(
       }
     ],
 
-    app: ({state, dispatch, http}) => 
+    view: ({state, dispatch, http}) => 
       div({},
         button({ click: e => dispatch('add') }, 'click to add 1'),
         `${state.timesClicked}`,
