@@ -9,9 +9,10 @@ module.exports = grunt => {
     mochaTest: {
       test: {
         options: {
-          reporter: 'spec'
+          reporter: 'spec',
+          require: 'babel-register'
         },
-        src: ['**/*.spec.js']
+        src: ['test/**/*.spec.js']
       }
     },
 
@@ -27,7 +28,7 @@ module.exports = grunt => {
       options: {
         presets: ['es2015', 'es2016', 'es2017']
       },
-      dist: {
+      build: {
         files: [{
           expand: true,
           cwd: 'src',
