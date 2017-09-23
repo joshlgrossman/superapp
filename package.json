@@ -9,7 +9,11 @@
     "prepublishOnly": "node ./node_modules/grunt/bin/grunt"
   },
   "keywords": [],
-  "author": "",
+  "author": "Josh Grossman",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joshlgrossman/superapp"
+  },
   "license": "ISC",
   "devDependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
