@@ -13,56 +13,93 @@ function view(rootEl) {
   return { children: [rootEl]};
 }
 
+const div = (attrs, ...children) => el('div', attrs, ...children);
+const p = (attrs, ...children) => el('p', attrs, ...children);
+
 describe('update', () => {
 
-  let destroyDom, container;
+  let destroyDom, container, node;
 
   before(() => {
     destroyDom = createDom();
   });
 
+  after(() => {
+    destroyDom();
+  });
+  
   beforeEach(() => {
     container = document.createElement('div');
+    node = document.createElement('div');
+    container.appendChild(node);
   });
 
   describe('when changing attributes', () => {
 
-    let child;
-
-    beforeEach(() => {
-      child = document.createElement('div');
-      container.appendChild(child);
-    })
-
     it('should add attributes', () => {
-      const current = view(el('div', {}));
-      const next = view(el('div', {name: 'test'}));
+      const current = view(div({}));
+      const next = view(div({name: 'test'}));
 
       update(container, current, next);
 
-      expect(child.getAttribute('name')).to.equal('test');
+      expect(node.getAttribute('name')).to.equal('test');
     });
 
     it('should update attributes', () => {
-      child.setAttribute('class', 'hello');
+      node.setAttribute('class', 'hello');
 
-      const current = view(el('div', {class: 'hello'}));
+      const current = view(div({class: 'hello'}));
       const next = view(el('div', {class:'world'}));
 
       update(container, current, next);
 
-      expect(child.getAttribute('class')).to.equal('world');
+      expect(node.getAttribute('class')).to.equal('world');
     });
 
     it('should remove attributes', () => {
-      child.setAttribute('name', 'test');
+      node.setAttribute('name', 'test');
 
-      const current = view(el('div', {name: 'test'}));
-      const next = view(el('div', {}));
+      const current = view(div({name: 'test'}));
+      const next = view(div({}));
 
       update(container, current, next);
 
-      expect(child.getAttribute('name')).to.not.be.ok;
+      expect(node.getAttribute('name')).to.not.be.ok;
+    });
+
+  });
+
+  describe('when updating children', () => {
+
+    it('should add child node', () => {
+      const current = view(div({}));
+      const next = view(div({}, p({})));
+
+      update(container, current, next);
+
+      expect(node.children[0].tagName.toLowerCase()).to.equal('p');
+    });
+
+    it('should update a child node', () => {
+      node.appendChild(document.createElement('div'));
+
+      const current = view(div({}, div({})));
+      const next = view(div({}, p({})));
+
+      update(container, current, next);
+
+      expect(node.children[0].tagName.toLowerCase()).to.equal('p');
+    });
+
+    it('should remove a child node', () => {
+      node.appendChild(document.createElement('div'));
+
+      const current = view(div({}, div({})));
+      const next = view(div({}));
+
+      update(container, current, next);
+
+      expect(node.children[0]).to.not.be.ok;
     });
 
   });
