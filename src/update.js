@@ -49,7 +49,7 @@ export function update(node, old = {}, next = {}) {
 
   if(old && old.children)
     for(; i < old.children.length; i++) {
-      const child = node.children[i];
+      const child = node.childNodes[i];
       if(child) node.removeChild(child);
     }
 
