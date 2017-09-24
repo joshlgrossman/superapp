@@ -69,7 +69,7 @@ describe('update', () => {
 
   });
 
-  describe('when updating children', () => {
+  describe('when updating child nodes', () => {
 
     it('should add child node', () => {
       const current = view(div({}));
@@ -100,6 +100,41 @@ describe('update', () => {
       update(container, current, next);
 
       expect(node.children[0]).to.not.be.ok;
+    });
+
+  });
+
+  describe('when updating child text', () => {
+  
+    it('should add text', () => {
+      const current = view(div({}));
+      const next = view(div({}, 'hello world'));
+
+      update(container, current, next);
+
+      expect(node.textContent).to.equal('hello world');
+    });
+
+    it('should update text', () => {
+      node.appendChild(document.createTextNode('hello'));
+
+      const current = view(div({}, 'hello'));
+      const next = view(div({}, 'world'));
+
+      update(container, current, next);
+
+      expect(node.textContent).to.equal('world');
+    });
+
+    it('should remove text', () => {
+      node.appendChild(document.createTextNode('hello world'));
+
+      const current = view(div({}, 'hello world'));
+      const next = view(div({}));
+
+      update(container, current, next);
+
+      expect(node.textContent).to.not.be.ok;
     });
 
   });
