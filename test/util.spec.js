@@ -12,6 +12,8 @@ describe('util', () => {
 
     it('should return false for non-objects', () => {
       expect(object('')).to.be.false;
+      expect(object(0)).to.be.false;
+      expect(object(()=>{})).to.be.false;
     });
 
   });
@@ -24,6 +26,8 @@ describe('util', () => {
 
     it('should return false for non-functions', () => {
       expect(func({})).to.be.false;
+      expect(func('')).to.be.false;
+      expect(func(0)).to.be.false;
     });
 
   });
@@ -36,6 +40,8 @@ describe('util', () => {
 
     it('should return false for non-strings', () => {
       expect(string(0)).to.be.false;
+      expect(string({})).to.be.false;
+      expect(string(()=>{})).to.be.false;
     });
 
   });
