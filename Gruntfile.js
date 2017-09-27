@@ -37,6 +37,14 @@ module.exports = grunt => {
           ext: '.js'
         }]
       }
+    },
+
+    copy: {
+      build: {
+        files: [
+          { expand: true, cwd: 'src/', src: ['index.d.ts'], dest: 'dist/' }
+        ]
+      }
     }
 
   });
@@ -44,6 +52,7 @@ module.exports = grunt => {
   grunt.loadNpmTasks('grunt-babel');
   grunt.loadNpmTasks('grunt-eslint');
   grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   grunt.registerTask('test', [
     'eslint',
@@ -51,7 +60,8 @@ module.exports = grunt => {
   ]);
 
   grunt.registerTask('build', [
-    'babel'
+    'babel',
+    'copy'
   ]);
 
   grunt.registerTask('default', ['test', 'build']);
